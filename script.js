@@ -7,7 +7,6 @@ galleryApp.object = 'objects/'
 galleryApp.getInput = () => {
     const userInput = $('input[name=search]').val();
     galleryApp.getArtIds(userInput);
-    console.log(userInput);
 };
 galleryApp.getArtIds = (queryValue) => {
     $.ajax({
@@ -19,11 +18,11 @@ galleryApp.getArtIds = (queryValue) => {
             q: queryValue
         }
     }).then((data) => {
-        artObjectArray = [];
+        galleryApp.artObjectArray = [];
         data.objectIDs.forEach((id) => {
-            artObjectArray.push(galleryApp.getArtObjects(id));
-        })
-        console.log(artObjectArray);
+            galleryApp.getArtObjects(id);
+        });
+        console.log(galleryApp.artObjectArray);
     });
 };
 galleryApp.getArtObjects = (objectEndpoint) => {
@@ -32,9 +31,10 @@ galleryApp.getArtObjects = (objectEndpoint) => {
         method: 'GET',
         dataType: 'json'
     }).then((data) => {
-        return(data);
+        galleryApp.artObjectArray.push(data);
     });
 };
+
 galleryApp.displayThumbnails = () => {};
 galleryApp.addMoreResults = () => {};
 galleryApp.toggleInfo = () => {};
