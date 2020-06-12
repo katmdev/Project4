@@ -23,10 +23,10 @@ galleryApp.getArtIds = (queryValue) => {
             galleryApp.artObjectArray.push(galleryApp.getArtObjects(id));
         });
         $.when(...galleryApp.artObjectArray).then((...artArray) => {
-            const artInfo = artArray.map((artInfoArray) => {
+            galleryApp.artInfo = artArray.map((artInfoArray) => {
                 return artInfoArray[0];
             });
-            galleryApp.displayThumbnails(artInfo);
+            galleryApp.displayThumbnails(galleryApp.artInfo);
         });
     });
 };
@@ -39,9 +39,10 @@ galleryApp.getArtObjects = (objectEndpoint) => {
 };
 
 galleryApp.displayThumbnails = (resultsArray) => {
-    console.log(resultsArray);
+    const splicedArray = resultsArray.splice(0, 20);
+    console.log(splicedArray);
     $('.gallery').empty();
-    resultsArray.forEach((result) => {
+    splicedArray.forEach((result) => {
         const objId = result.objectID;
         const thumbnail = result.primaryImageSmall;
         const image = result.primaryImage;
@@ -56,13 +57,18 @@ galleryApp.displayThumbnails = (resultsArray) => {
         const imageContainer = $('<div>').addClass('galleryThumbnail').attr('id', objId).html(img);
         $('.gallery').append(imageContainer);
     });
+    if (resultsArray.length > 0) {
+        const showMore = $('<button>').addClass('showMore').text('more');
+        $('.gallery').append(showMore);
+    }
+    
 
 
     // append thumbnails from primaryImageSmall
     // assign ID = objectID
     // think about pagenation when displaying the thumbnails
 };
-galleryApp.addMoreResults = () => {};
+
 galleryApp.toggleInfo = () => {};
 galleryApp.displayLarger = () => {};
 
@@ -71,8 +77,10 @@ galleryApp.init = () => {
         e.preventDefault();
         galleryApp.getInput();
     });
-    $('#moreResults').on('click', function() {
-
+    $('.gallery').on('click', '.showMore', function(e) {
+        e.preventDefault();
+        $('this').toggle();
+        galleryApp.displayThumbnails(galleryApp.artInfo);
     });
     $('.gallery').on('click', '.galleryThumbnail', function() {
 
