@@ -5,6 +5,7 @@ galleryApp.search = 'search';
 galleryApp.object = 'objects/'
 
 galleryApp.getInput = () => {
+    $('.gallery').empty();
     galleryApp.artObjectArray = [];
     const userInput = $('input[name=search]').val();
     galleryApp.getArtIds(userInput);
@@ -41,7 +42,6 @@ galleryApp.getArtObjects = (objectEndpoint) => {
 galleryApp.displayThumbnails = (resultsArray) => {
     galleryApp.splicedArray = resultsArray.splice(0, 20);
     console.log(galleryApp.splicedArray);
-    $('.gallery').empty();
     galleryApp.splicedArray.forEach((result) => {
         const objId = result.objectID;
         const thumbnail = result.primaryImageSmall;
@@ -94,7 +94,7 @@ galleryApp.init = () => {
     });
     $('.gallery').on('click', '.showMore', function(e) {
         e.preventDefault();
-        $('this').toggle();
+        $(this).toggle();
         galleryApp.displayThumbnails(galleryApp.artInfo);
     });
     $('.gallery').on('click', '.galleryThumbnail', function() {
