@@ -41,16 +41,25 @@ galleryApp.getArtObjects = (objectEndpoint) => {
 
 galleryApp.displayThumbnails = (resultsArray) => {
     galleryApp.splicedArray = resultsArray.splice(0, 20);
-    console.log(galleryApp.splicedArray);
     galleryApp.splicedArray.forEach((result) => {
         const objId = result.objectID;
         const thumbnail = result.primaryImageSmall;
         const name = result.objectName;
         const title = result.title;
-        const img = $('<img>').attr({'src': thumbnail, 'alt': `${title}, ${name}`})
+        const img = $('<img>').attr({ 'src': thumbnail, 'alt': `${title}, ${name}`, 'id': `${objId}image`}).addClass('galleryImage');
         const imageContainer = $('<div>').addClass('galleryThumbnail').attr('id', objId).html(img);
         $('.gallery').append(imageContainer);
+        // $('.galleryImage').each(function() {
+        // const item = $(this).attr('id');
+        console.log($('.galleryImage'));
+        if ($('#'`${objId}image`).height() > $('#'`${objId}image`).width()) { 
+            $('this').css('width', '100%');  
+        } else {
+            $('this').css('height', '100%');
+        };
+        
     });
+
     if (resultsArray.length > 0) {
         const showMore = $('<button>').addClass('showMore').text('more');
         $('.gallery').append(showMore);

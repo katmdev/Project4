@@ -1,3 +1,52 @@
 .caption {
     display: none;
 }
+
+body {
+    background-color: #FFFCF9;
+    font-size: 62.5%;
+    font-family: $sansSerif;
+    color: $secondaryHex;
+}
+
+.wrapper, .artWrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.wrapper {
+    width: 90%;
+}
+
+header {
+    background-color: $accentHex;
+    color: $primaryHex;
+
+    & .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+h1 {
+    font-size: $h1Size;
+    font-family: $serif;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.galleryThumbnail {
+    width: 15vw;
+    height: 15vw;
+    overflow: hidden;
+    object-fit: scale-down;
+    object-position: 50% 50%;
+    border: 1px solid black;
+}

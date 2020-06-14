@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Prata&family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a9bc7af8fb.js" crossorigin="anonymous"></script>
     <!-- <link rel="icon" href="">-->
     <link rel="stylesheet" href="./styles/style.css">
@@ -12,21 +12,27 @@
 <body>
 
     <header>
-        <h1></h1>
-        <form>
-            <label for="search">Search:</label>
-            <input type="text" name="search" id="search" placeholder="">
-            <button type="submit" id="submit">Submit</button>
-        </form>
+        <div class="wrapper">
+            <h1>The Gallery Project</h1>
+            <form>
+                <label for="search">Search:</label>
+                <input type="text" name="search" id="search" placeholder="">
+                <button type="submit" id="submit">Submit</button>
+            </form>
+        </div>
     </header>
 
     <main>
-        <section class="gallery"></section>
-        <section class="highlight"></section>
+        <div class="artWrapper">
+            <section class="gallery"></section>
+            <section class="highlight"></section>
+        </div>
     </main>
 
     <footer>
-        <p></p>
+        <div class="wrapper">
+            <p></p>
+        </div>
     </footer>
     
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
