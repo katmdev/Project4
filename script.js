@@ -39,38 +39,53 @@ galleryApp.getArtObjects = (objectEndpoint) => {
 };
 
 galleryApp.displayThumbnails = (resultsArray) => {
-    const splicedArray = resultsArray.splice(0, 20);
-    console.log(splicedArray);
+    galleryApp.splicedArray = resultsArray.splice(0, 20);
+    console.log(galleryApp.splicedArray);
     $('.gallery').empty();
-    splicedArray.forEach((result) => {
+    galleryApp.splicedArray.forEach((result) => {
         const objId = result.objectID;
         const thumbnail = result.primaryImageSmall;
-        const image = result.primaryImage;
-        const medium = result.medium;
-        const date = result.objectDate;
         const name = result.objectName;
         const title = result.title;
-        const artist = result.artistDisplayName;
-        // error handling for variables that have empty string "unknown"
-        console.log(objId, thumbnail, image, medium, date, name, title, artist);
-        const img = $('<img>').attr({'src': thumbnail, 'alt': title})
+        const img = $('<img>').attr({'src': thumbnail, 'alt': `${title}, ${name}`})
         const imageContainer = $('<div>').addClass('galleryThumbnail').attr('id', objId).html(img);
         $('.gallery').append(imageContainer);
     });
     if (resultsArray.length > 0) {
         const showMore = $('<button>').addClass('showMore').text('more');
         $('.gallery').append(showMore);
-    }
-    
-
-
-    // append thumbnails from primaryImageSmall
-    // assign ID = objectID
-    // think about pagenation when displaying the thumbnails
+    };
 };
 
-galleryApp.toggleInfo = () => {};
-galleryApp.displayLarger = () => {};
+galleryApp.displayLarger = (idNumber) => {
+    galleryApp.splicedArray.forEach((splicedObject) => {
+        if (idNumber == splicedObject.objectID) {
+        const objId = splicedObject.objectID;
+        const medium = splicedObject.medium;
+        const date = splicedObject.objectDate;
+        const name = splicedObject.objectName;
+        const image = splicedObject.primaryImage;
+        const title = splicedObject.title;
+        const artist = splicedObject.artistDisplayName;
+        const info = `fas fa-info-circle`;
+        const img = $('<img>').attr({'src': image, 'alt': `${title}, ${name}`})
+        const imageContainer = $('<figure>').addClass('highlightImage').html(img);
+        const icon = $('<i>').addClass(info);
+        const infoButton = $('<button>').val(objId).addClass('infoButton').html(icon);
+        let captionContent;
+        if (artist) {
+            captionContent = $('<p>').text(title, artist, medium, date, name);
+        } else {
+            captionContent = $('<p>').append(title, medium, date, name);
+        };
+        const description = $('<figcaption>').addClass('caption').html(captionContent);
+        $('.highlight').empty().append(imageContainer, infoButton, description);
+        };
+    });
+};
+galleryApp.toggleInfo = (iconId) => {
+    console.log(iconId);
+};
 
 galleryApp.init = () => {
     $('form').on('submit', function(e) {
@@ -83,10 +98,12 @@ galleryApp.init = () => {
         galleryApp.displayThumbnails(galleryApp.artInfo);
     });
     $('.gallery').on('click', '.galleryThumbnail', function() {
-
+        galleryApp.displayLarger($(this).attr('id'));
     });
-    $('.info').on('click', function() {
-
+    $('.highlight').on('click', '.infoButton', function(e) {
+        e.preventDefault();
+        $('.fas').toggleClass('fa-times-circle fa-info-circle');
+        $('.caption').toggle();
     });
 };
 
