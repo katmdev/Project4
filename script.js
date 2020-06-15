@@ -5,7 +5,9 @@ galleryApp.search = 'search';
 galleryApp.object = 'objects/'
 
 galleryApp.getInput = () => {
-    $('.gallery').empty();
+    const loading = $('<img>').attr('src', './assets/loading.gif');
+    const placeholderContainer = $('<div>').addClass('placeholder').html(loading);
+    $('.gallery').empty().append(placeholderContainer);
     galleryApp.artObjectArray = [];
     galleryApp.displayedArray = [];
     const userInput = $('input[name=search]').val();
@@ -20,18 +22,26 @@ galleryApp.getArtIds = (queryValue) => {
             isHighlight: true,
             q: queryValue
         }
+
     }).then((data) => {
-        data.objectIDs.forEach((id) => {
-            galleryApp.artObjectArray.push(galleryApp.getArtObjects(id));
-        });
-        $.when(...galleryApp.artObjectArray).then((...artArray) => {
-            galleryApp.artInfo = artArray.map((artInfoArray) => {
-                return artInfoArray[0];
+        if (data.objectIDs) {
+            data.objectIDs.forEach((id) => {
+                galleryApp.artObjectArray.push(galleryApp.getArtObjects(id));
             });
-            galleryApp.displayThumbnails(galleryApp.artInfo);
-        });
+            $.when(...galleryApp.artObjectArray).then((...artArray) => {
+                galleryApp.artInfo = artArray.map((artInfoArray) => {
+                    return artInfoArray[0];
+                });
+                $('.gallery').empty();
+                galleryApp.displayThumbnails(galleryApp.artInfo);
+            });
+        } else {
+            const error = $('<h2>').text(`${queryValue} yields no results`)
+            $('.placeholder').html(error);
+        };
     });
 };
+
 galleryApp.getArtObjects = (objectEndpoint) => {
     return $.ajax({
         url: `${galleryApp.url}${galleryApp.object}${objectEndpoint}`,
@@ -61,25 +71,32 @@ galleryApp.displayThumbnails = (resultsArray) => {
 galleryApp.displayLarger = (idNumber) => {
     galleryApp.displayedArray.forEach((displayedObject) => {
         if (idNumber == displayedObject.objectID) {
-        const objId = displayedObject.objectID;
-        const medium = displayedObject.medium;
-        const date = displayedObject.objectDate;
-        const name = displayedObject.objectName;
-        const image = displayedObject.primaryImage;
-        const title = displayedObject.title;
-        const artist = displayedObject.artistDisplayName;
+        const obj = {
+            objId: displayedObject.objectID,
+            medium: displayedObject.medium,
+            date: displayedObject.objectDate,
+            name: displayedObject.objectName,
+            image: displayedObject.primaryImage,
+            title: displayedObject.title,
+            artist: displayedObject.artistDisplayName
+        };
+        for (variable in obj) {
+            if (!obj[variable]) {
+                obj[variable] = `${variable} unknown`
+            }
+        };
         const info = `fas fa-info-circle`;
-        const img = $('<img>').attr({'src': image, 'alt': `${title}, ${name}`})
+        const img = $('<img>').attr({'src': obj.image, 'alt': `${obj.title}, ${obj.name}`})
         const imageContainer = $('<div>').addClass('highlight__container').html(img);
         const icon = $('<i>').addClass(info);
-        const infoButton = $('<button>').val(objId).addClass('infoButton').html(icon);
-        let captionContent;
-        if (artist) {
-            captionContent = $('<p>').text(title, artist, medium, date, name);
-        } else {
-            captionContent = $('<p>').append(title, medium, date, name);
-        };
-        const description = $('<div>').addClass('caption').html(captionContent);
+        const infoButton = $('<button>').val(obj.objId).addClass('infoButton').html(icon);
+        const title = $('<p>').text(obj.title);
+        const artist = $('<p>').text(obj.artist);
+        const date = $('<p>').text(obj.date);
+        const name = $('<p>').text(obj.name);
+        const medium = $('<p>').text(obj.medium);
+
+        const description = $('<div>').addClass('caption').append(title, artist, date, medium, name);
         $('.highlight').empty().append(imageContainer, infoButton, description);
         };
     });

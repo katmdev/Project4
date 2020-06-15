@@ -1,15 +1,12 @@
-.caption {
-    display: none;
-}
 
 body {
-    background-color: #FFFCF9;
+    background-color: $primaryHex;
     font-size: 62.5%;
     font-family: $sansSerif;
     color: $secondaryHex;
 }
 main {
-    padding: 5rem 0;
+    margin: 6rem 0 2rem 0;
 }
 .wrapper, .artWrapper {
     margin: 0 auto;
@@ -22,26 +19,67 @@ main {
     display: flex;
     flex-direction: row-reverse;
 }
-.highlight {
-    width: 50%;
-    max-width: 900px;
-    text-align: right;
-    &__container {
-        object-fit: contain;
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
+
+button, input, label {
+    border: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.search {
+    // background-color: $secondaryHex;
+    padding: 5px;
+}
+
+input {
+    border: 1px solid $secondaryHex;
+    padding: 5px;
+    margin: 0;
+}
+
+button, label {
+    text-transform: uppercase;
+}
+
+button {
+    position: relative;
+    
+    
+    &:before {
+        content: "";
+        position: absolute;
         width: 100%;
-        border: 1px solid $secondaryHex;
-        border-right: none;
+        height: 1px;
+        bottom: -3px;
+        left: 0;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.4s ease 0s;
     }
-    & img {
-        max-width: 100%;
-        display: block;
+    &:hover:before {
+        visibility: visible;
+        transform: scaleX(1);
     }
 }
+
+.submit:before {
+    background-color: $primaryHex;
+}
+
+.showMore:before {
+    background-color: $secondaryHex;
+}
+
+.showMore {
+    padding: 1rem;
+}
+
+
 header {
-    background-color: $accentHex;
+    height: 6rem;
+    background-color: $primaryAccentHex;
     color: $primaryHex;
     position: fixed;
     top: 0;
@@ -64,12 +102,25 @@ h1 {
     padding: 1.25rem 0;
 }
 
+.placeholder {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .gallery {
+    height: calc(100vh - 8rem);
     width: 50%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     overflow: scroll;
+    position: relative;
 }
 
 .galleryThumbnail {
@@ -86,8 +137,55 @@ h1 {
         min-height: 150%;
     }
 }
+
+
+.highlight {
+    height: calc(100vh - 8rem);
+    width: 50%;
+    max-width: 900px;
+    // text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+    }
+    & img {
+        max-height: 100%;
+        display: block;
+        border: 1px solid $secondaryHex;
+    }
+    & .infoButton {
+        position: absolute;
+        right: 0.2rem;
+        bottom: 0;
+        font-size: 2rem;
+        color: $secondaryAccentHex;
+        padding: 0;
+        z-index: 20;
+    }
+}
+
+.caption {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    border-top: 1px solid $secondaryHex;
+    padding: 1rem;
+}
+
 footer {
-    background-color: $accentHex;
+    height: 2rem;
+    background-color: $primaryAccentHex;
     color: $primaryHex;
     text-align: center;
     position: fixed;
