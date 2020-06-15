@@ -244,11 +244,10 @@ body {
   font-size: 62.5%;
   font-family: "Roboto", sans-serif;
   color: #171A21;
-  height: 100vh;
 }
 
 main {
-  padding-top: 5rem;
+  padding: 5rem 0;
 }
 
 .wrapper, .artWrapper {
@@ -271,19 +270,21 @@ main {
 }
 
 .highlight {
-  position: fixed;
-  left: 0;
   width: 50%;
+  max-width: 900px;
+  text-align: right;
 }
 
 .highlight__container {
+  -o-object-fit: contain;
+     object-fit: contain;
   width: 100%;
   border: 1px solid #171A21;
   border-right: none;
 }
 
 .highlight img {
-  width: 100%;
+  max-width: 100%;
   display: block;
 }
 
@@ -333,7 +334,6 @@ h1 {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   overflow: scroll;
-  padding-bottom: 2rem;
 }
 
 .galleryThumbnail {
@@ -346,15 +346,16 @@ h1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 50%;
-  max-width: 30rem;
-  max-height: 30rem;
+  width: 25vw;
+  max-width: 450px;
+  height: 25vw;
+  max-height: 450px;
   overflow: hidden;
   border: 1px solid black;
 }
 
 .galleryThumbnail img {
-  min-height: 100%;
+  min-height: 150%;
 }
 
 footer {

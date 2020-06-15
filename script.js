@@ -7,6 +7,7 @@ galleryApp.object = 'objects/'
 galleryApp.getInput = () => {
     $('.gallery').empty();
     galleryApp.artObjectArray = [];
+    galleryApp.displayedArray = [];
     const userInput = $('input[name=search]').val();
     galleryApp.getArtIds(userInput);
 };
@@ -42,11 +43,12 @@ galleryApp.getArtObjects = (objectEndpoint) => {
 galleryApp.displayThumbnails = (resultsArray) => {
     galleryApp.splicedArray = resultsArray.splice(0, 20);
     galleryApp.splicedArray.forEach((result) => {
+        galleryApp.displayedArray.push(result);
         const objId = result.objectID;
-        const thumbnail = result.primaryImageSmall;
+        const image = result.primaryImage;
         const name = result.objectName;
         const title = result.title;
-        const img = $('<img>').attr({ 'src': thumbnail, 'alt': `${title}, ${name}`, 'id': `image${objId}`}).addClass('galleryImage');
+        const img = $('<img>').attr({ 'src': image, 'alt': `${title}, ${name}`, 'id': `image${objId}`}).addClass('galleryImage');
         const imageContainer = $('<div>').addClass('galleryThumbnail').attr('id', objId).html(img);
         $('.gallery').append(imageContainer); 
     });
@@ -57,15 +59,15 @@ galleryApp.displayThumbnails = (resultsArray) => {
 };
 
 galleryApp.displayLarger = (idNumber) => {
-    galleryApp.splicedArray.forEach((splicedObject) => {
-        if (idNumber == splicedObject.objectID) {
-        const objId = splicedObject.objectID;
-        const medium = splicedObject.medium;
-        const date = splicedObject.objectDate;
-        const name = splicedObject.objectName;
-        const image = splicedObject.primaryImage;
-        const title = splicedObject.title;
-        const artist = splicedObject.artistDisplayName;
+    galleryApp.displayedArray.forEach((displayedObject) => {
+        if (idNumber == displayedObject.objectID) {
+        const objId = displayedObject.objectID;
+        const medium = displayedObject.medium;
+        const date = displayedObject.objectDate;
+        const name = displayedObject.objectName;
+        const image = displayedObject.primaryImage;
+        const title = displayedObject.title;
+        const artist = displayedObject.artistDisplayName;
         const info = `fas fa-info-circle`;
         const img = $('<img>').attr({'src': image, 'alt': `${title}, ${name}`})
         const imageContainer = $('<div>').addClass('highlight__container').html(img);
@@ -82,9 +84,9 @@ galleryApp.displayLarger = (idNumber) => {
         };
     });
 };
-galleryApp.toggleInfo = (iconId) => {
-    console.log(iconId);
-};
+// galleryApp.toggleInfo = (iconId) => {
+//     console.log(iconId);
+// };
 
 galleryApp.init = () => {
     $('form').on('submit', function(e) {

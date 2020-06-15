@@ -7,10 +7,9 @@ body {
     font-size: 62.5%;
     font-family: $sansSerif;
     color: $secondaryHex;
-    height: 100vh;
 }
 main {
-    padding-top: 5rem;
+    padding: 5rem 0;
 }
 .wrapper, .artWrapper {
     margin: 0 auto;
@@ -24,16 +23,20 @@ main {
     flex-direction: row-reverse;
 }
 .highlight {
-    position: fixed;
-    left: 0;
     width: 50%;
+    max-width: 900px;
+    text-align: right;
     &__container {
+        object-fit: contain;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
         width: 100%;
         border: 1px solid $secondaryHex;
         border-right: none;
     }
     & img {
-        width: 100%;
+        max-width: 100%;
         display: block;
     }
 }
@@ -67,23 +70,20 @@ h1 {
     flex-direction: row;
     flex-wrap: wrap;
     overflow: scroll;
-    padding-bottom: 2rem;
 }
 
 .galleryThumbnail {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    // height: #{width};
-    max-width: 30rem;
-    max-height: 30rem;
+    width: 25vw;
+    max-width: 450px;
+    height: 25vw;
+    max-height: 450px;
     overflow: hidden;
-    // object-fit: scale-down;
-    // object-position: 50% 50%;
     border: 1px solid black;
     & img {
-        min-height: 100%;
+        min-height: 150%;
     }
 }
 footer {
