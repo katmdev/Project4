@@ -46,20 +46,10 @@ galleryApp.displayThumbnails = (resultsArray) => {
         const thumbnail = result.primaryImageSmall;
         const name = result.objectName;
         const title = result.title;
-        const img = $('<img>').attr({ 'src': thumbnail, 'alt': `${title}, ${name}`, 'id': `${objId}image`}).addClass('galleryImage');
+        const img = $('<img>').attr({ 'src': thumbnail, 'alt': `${title}, ${name}`, 'id': `image${objId}`}).addClass('galleryImage');
         const imageContainer = $('<div>').addClass('galleryThumbnail').attr('id', objId).html(img);
-        $('.gallery').append(imageContainer);
-        // $('.galleryImage').each(function() {
-        // const item = $(this).attr('id');
-        console.log($('.galleryImage'));
-        if ($('#'`${objId}image`).height() > $('#'`${objId}image`).width()) { 
-            $('this').css('width', '100%');  
-        } else {
-            $('this').css('height', '100%');
-        };
-        
+        $('.gallery').append(imageContainer); 
     });
-
     if (resultsArray.length > 0) {
         const showMore = $('<button>').addClass('showMore').text('more');
         $('.gallery').append(showMore);
@@ -78,7 +68,7 @@ galleryApp.displayLarger = (idNumber) => {
         const artist = splicedObject.artistDisplayName;
         const info = `fas fa-info-circle`;
         const img = $('<img>').attr({'src': image, 'alt': `${title}, ${name}`})
-        const imageContainer = $('<figure>').addClass('highlightImage').html(img);
+        const imageContainer = $('<div>').addClass('highlight__container').html(img);
         const icon = $('<i>').addClass(info);
         const infoButton = $('<button>').val(objId).addClass('infoButton').html(icon);
         let captionContent;
@@ -87,7 +77,7 @@ galleryApp.displayLarger = (idNumber) => {
         } else {
             captionContent = $('<p>').append(title, medium, date, name);
         };
-        const description = $('<figcaption>').addClass('caption').html(captionContent);
+        const description = $('<div>').addClass('caption').html(captionContent);
         $('.highlight').empty().append(imageContainer, infoButton, description);
         };
     });
