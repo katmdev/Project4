@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>The Gallery Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Prata&family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a9bc7af8fb.js" crossorigin="anonymous"></script>
-    <!-- <link rel="icon" href="">-->
+    <link rel="icon" href="./assets/jar.png">
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
@@ -15,8 +15,8 @@
         <div class="wrapper">
             <h1>The Gallery Project</h1>
             <form>
-                <label for="search" class="search">Search:</label>
-                <input type="text" name="search" id="search" placeholder="">
+                <label for="search" class="search sr-only">Search:</label>
+                <input type="text" name="search" id="search" placeholder="search">
                 <button type="submit" id="submit" class="submit">Submit</button>
             </form>
         </div>
@@ -25,13 +25,20 @@
     <main>
         <div class="artWrapper">
             <section class="gallery"></section>
-            <section class="highlight"></section>
+            <section class="highlight">
+                <h2>How to:</h2>
+                <ul>
+                    <li>Search for an artist, subject, or medium.</li>
+                    <li>Click a thumbnail for a closer look.</li>
+                    <li>Click the info button for more information.</li>
+                </ul>
+            </section>
         </div>
     </main>
 
     <footer>
         <div class="wrapper">
-            <p>A Tabs & Kat project</p>
+            <p>A <a href="http://tabithapoeze.com">Tabs</a> & <a href="https://katm.dev">Kat</a> project</p>
         </div>
     </footer>
     
