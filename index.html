@@ -3,36 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- google fonts -->
-    <!-- fontawesome icons -->
-    <!-- <link rel="icon" href="">-->
-    <link rel="stylesheet" href="./styles.css">
+    <title>The Gallery Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prata&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a9bc7af8fb.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="./assets/jar.png">
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
 
     <header>
-        <h1></h1>
-        <form>
-            <label for="search">Search:</label>
-            <input type="text" name="search" id="search" placeholder="">
-            <button class="sr-only" type="submit" id="submit">Submit</button>
-        </form>
+        <div class="wrapper">
+            <h1>The Gallery Project</h1>
+            <form>
+                <label for="search" class="search sr-only">Search:</label>
+                <input type="text" name="search" id="search" placeholder="search">
+                <button type="submit" id="submit" class="submit">Submit</button>
+            </form>
+        </div>
     </header>
 
     <main>
-        <section class="instructions">
-            <h2></h2>
-            <p></p>
-            <i></i>
-        </section class="gallery">
-        <!-- gallery -->
-            
-        </section>
+        <div class="artWrapper">
+            <section class="gallery"></section>
+            <section class="highlight">
+                <h2>How to:</h2>
+                <ul>
+                    <li>Search for an artist, subject, or medium.</li>
+                    <li>Click a thumbnail for a closer look.</li>
+                    <li>Click the info button for more information.</li>
+                </ul>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p></p>
+        <div class="wrapper">
+            <p>A <a href="http://tabithapoeze.com">Tabs</a> & <a href="https://katm.dev">Kat</a> project</p>
+        </div>
     </footer>
     
     <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>

@@ -1,0 +1,211 @@
+// MAIN ELEMENTS
+body {
+    font-size: 62.5%;
+    background-color: $primaryHex;
+    font-family: $sansSerif;
+    color: $secondaryHex;
+}
+header {
+    height: 6rem;
+    background-color: $primaryAccentHex;
+    color: $primaryHex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    border-bottom: 1px solid black;
+
+    & .wrapper {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+main {
+    font-size: $pSize;
+    margin: 6rem 0 2rem 0;
+}
+footer {
+    height: 2rem;
+    background-color: $primaryAccentHex;
+    color: $primaryHex;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-top: 1px solid $secondaryHex;
+}
+
+// WRAPPERS
+.wrapper, .artWrapper {
+    margin: 0 auto;
+    max-width: 1800px;
+}
+.wrapper {
+    width: 90%;
+}
+.artWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+}
+// TEXT & BUTTON STYLING
+h1 {
+    font-size: $h1Size;
+    font-family: $serif;
+    margin: 0;
+    padding: 1.25rem 0;
+}
+h2 {
+    font-size: $h2Size;
+    font-family: $serif;
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    &:hover,
+    &:active,
+    &:focus {
+        color: $secondaryAccentHex;
+    } 
+}
+button, input, label {
+    border: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0;
+}
+form {
+    text-align: right;
+}
+input {
+    border-bottom: 2px solid $primaryHex;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    &:focus {
+        background-color: $primaryHex;
+        color: $primaryAccentHex;
+    }
+}
+.submit {
+    border: 2px solid $primaryHex;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+    &:focus,
+    &:active {
+        background-color: $primaryHex;
+        color: $primaryAccentHex;
+    }
+}
+button, label {
+    text-transform: uppercase;
+}
+
+// SECTIONS
+.highlight,
+.gallery {
+    // height = total page minus header
+    height: calc(100vh - 8rem);
+    width: 50%;
+    display: flex;
+    position: relative;
+
+}
+.gallery {
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+.galleryThumbnail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25vw;
+    height: 25vw;
+    // max-width = quarter of wrapper
+    max-width: 450px;
+    max-height: 450px;
+    overflow: hidden;
+    border: 1px solid black;
+    & img {
+        // zoomed to fill container
+        min-height: 150%;
+    }
+    &:focus,
+    &:focus-within,
+    &:hover {
+        opacity: 60%;
+    }
+}
+.highlight {
+    max-width: 900px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+    }
+    & img {
+        // height cannot be greater than the container(100%)
+        max-height: 100%;
+        display: block;
+        border: 1px solid $secondaryHex;
+    }
+    & .infoButton {
+        position: absolute;
+        right: 0.2rem;
+        bottom: 0;
+        font-size: 2rem;
+        color: $secondaryAccentHex;
+        padding: 0;
+        z-index: 20;
+    }
+}
+.caption {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $primaryHex;
+    border: 1px solid $secondaryHex;
+    padding: 1rem;
+}
+
+.showMore {
+    padding: 1rem;
+    width: 100%;
+    font-size: $h1Size;
+    color: inherit;
+
+    &:focus,
+    &:focus-within,
+    &:active,
+    &:hover {
+        color: $primaryAccentHex;
+    }
+}
+.placeholder {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

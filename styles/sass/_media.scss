@@ -1,0 +1,28 @@
+@media (max-width: 940px) {
+    header {
+        height: 11rem;
+    }
+    header .wrapper {
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    form
+    main {
+        margin-top: 11rem;
+    }
+    .gallery,
+    .highlight {
+        height: calc(100vh - 13rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        width: 25%;
+        align-content: flex-start;
+    }
+    .highlight {
+        width: 75%;
+    }
+}
