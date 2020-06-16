@@ -7,13 +7,18 @@
         flex-direction: column;
         justify-content: center;
     }
-    form
     main {
         margin-top: 11rem;
     }
     .gallery,
     .highlight {
         height: calc(100vh - 13rem);
+    }
+    .highlight img {
+        max-width: 100%;
+    }
+    .galleryThumbnail img {
+        max-height: 150px;
     }
 }
 
